@@ -30,7 +30,7 @@ public class ClientView extends Application {
 
     private Parent createContent() {
 
-        //MainChat mainChat = new MainChat();
+        Main game = new Main();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -51,7 +51,7 @@ public class ClientView extends Application {
         button.setOnAction(event -> {
             // some action here...
             //Client client = ClientView.createClient();
-            //user = new ChatUser(userBox.getText());
+            player = new GamePlayer(userBox.getText());
             System.out.println(player);
             if(player.usernameIsNotNull()) {
                 //Thread t = connection.getConnThread();
@@ -63,7 +63,7 @@ public class ClientView extends Application {
                     e.printStackTrace();
                 }
                 try {
-                    //mainChat.start(new Stage());
+                    game.start(new Stage());
                     // must connect to the socket..
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -102,9 +102,7 @@ public class ClientView extends Application {
 
     private Client createClient() {
         return new Client("localhost", 19000, data -> {
-            Platform.runLater(() -> {
-                player.getUsername();
-            });
+            Platform.runLater(() -> player.getUsername());
         });
 
     }
